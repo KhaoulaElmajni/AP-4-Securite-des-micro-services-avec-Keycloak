@@ -87,19 +87,65 @@ ___
     
 ![](https://i.imgur.com/FeRNMnS.png)
 
+|        | ROLE1 | ROLE2 | ROLE3 |
+|--------| -------- | -------- | -------- |
+| Création |![](https://i.imgur.com/S2sFHaD.png)|![](https://i.imgur.com/Mc89kyo.png)|![](https://i.imgur.com/aXgf0CH.png)|
+
+> La liste des roles crées:
+    
+![](https://i.imgur.com/4ILmfKq.png)
+
 
 ###  8. Affecter les rôles aux utilisateurs
+    
+|        | USER1 | USER2 | USER3 |
+|--------| -------- | -------- | -------- |
+| USER |![](https://i.imgur.com/5LXdJxx.png)|![](https://i.imgur.com/xg6qcDN.png)||
+| ADMIN ||![](https://i.imgur.com/dztV1gv.png)|
+| MANAGER |||![](https://i.imgur.com/lw2IWB1.png)
     
 ###  9. Avec PostMan :
     
 > * Tester l'authentification avec le mot de passe
 
+![](https://i.imgur.com/Bm0x6OW.png)
+- résultat:
+  
+	![](https://i.imgur.com/ieGA5fF.png)
+
+    
 > * Analyser les contenus des deux JWT Access Token et Refresh Token
-    
+	
+1.**Access Token:**
+- Analyse dans [jwt.io](https://jwt.io/) : 
+	![](https://i.imgur.com/pchYChL.png)
+	![](https://i.imgur.com/xg4j1SO.png)
+	![](https://i.imgur.com/nsKvJ6D.png)
+	![](https://i.imgur.com/AqiMfnG.png)
+
+
+2.**Resfresh Token:**
+- Analyse dans [jwt.io](https://jwt.io/) : 
+	![](https://i.imgur.com/7P5MEoz.png)
+	![](https://i.imgur.com/esAQcM5.png)
+	![](https://i.imgur.com/Xsp71EE.png)
+
+	
 > * Tester l'authentification avec le Refresh Token
-    
+
+![](https://i.imgur.com/X5bz6BB.png)
+
 > * Tester l'authentification avec Client ID et Client Secret
-    
+
+1. Activation de l'authentification du client:
+	
+	![](https://i.imgur.com/DAgGWhl.png)
+2. Copie le secret généré:
+	
+	![](https://i.imgur.com/BWvPUWu.png)
+
+![](https://i.imgur.com/fGgAHGU.png)
+
 
 > * Changer les paramètres des Tokens Access Token et Refresh Token
     
