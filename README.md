@@ -167,13 +167,113 @@ ___
 
 ## 	1. Customer-service
 ---
+-Ajout des dépendances:
+	
+```
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.keycloak</groupId>	
+	<artifactId>keycloak-spring-boot-starter</artifactId>
+	<version>20.0.1</version>
+</dependency>
+
+```
+- configuration de la sécurité de l'application
+
+```java!
+@Configuration  //=> il permet de configurer la sécurité de l'application
+public class KeycloakAdapterConfig {
+    @Bean
+    public KeycloakSpringBootConfigResolver keycloakConfigResolver(){   //=> il permet de dire au keycloak de lire le fichier application.properties
+        return new KeycloakSpringBootConfigResolver();
+        //=> tu vas se baser sur le fichier application.properties pour configurer keycloak et pas keycloak.json
+    }
+
+    /*@Bean
+        KeycloakRestTemplate keycloakRestTemplate(KeycloakClientRequestFactory keycloakClientRequestFactory){
+        return new KeycloakRestTemplate(keycloakClientRequestFactory);
+    }*/
+}
+```
+	
+```java!
+@KeycloakConfiguration//=> @Configuration + @EnableWebSecurity + @EnableGlobalMethodSecurity(prePostEnabled = true)
+//=> il permet de configurer la sécurité de l'application
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {//=> il permet de configurer la sécurité de l'application
+    @Override
+    protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
+        //=> il permet de configurer la stratégie d'authentification
+        return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(keycloakAuthenticationProvider());
+        //=> ce n'est pas à moi de gérer les users et les roles
+        // on va déléguer l'authentification à un provider => à keycloak
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        //=> il permet de configurer les autorisations = les droits d'accès
+        super.configure(http);
+
+        http.csrf().disable();
+        http.authorizeRequests().antMatchers("/h2-console/**").permitAll();
+        http.headers().frameOptions().disable();
+        http.authorizeRequests().anyRequest().authenticated();
+    }
+}
+```
+	
+	
+![](https://i.imgur.com/9qoTWxz.png)
+
+![](https://i.imgur.com/VWLDwi9.png)
+
+
 	
 ##	2. Inventory-service
 ---
+-Ajout des dépendances:
 	
+```
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.keycloak</groupId>	
+	<artifactId>keycloak-spring-boot-starter</artifactId>
+	<version>20.0.1</version>
+</dependency>
+
+```
+
 ##	3. Order-service
 ---
+-Ajout des dépendances:
 	
+```
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.keycloak</groupId>	
+	<artifactId>keycloak-spring-boot-starter</artifactId>
+	<version>20.0.1</version>
+</dependency>
+
+```
+
 	
 	
 ___
