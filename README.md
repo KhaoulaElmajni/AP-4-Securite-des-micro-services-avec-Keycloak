@@ -149,7 +149,33 @@ ___
 
 > * Changer les paramètres des Tokens Access Token et Refresh Token
     
-    
+![](https://i.imgur.com/VwEONIh.png)
+
+-Paramétres de Access Token:
+	**date d'expiration: 10 min**
+	
+![](https://i.imgur.com/zKlPtJJ.png)
+
+-Paramétre de Refresh Token:
+	**date d'expiration: 59 min**
+	
+![](https://i.imgur.com/YLFlYY7.png)
+
+* Partie  2 :
+  
+	- Sécuriser L'architecture Micro services Du projet Customer-service, Inventory-service et Order-service
+
+## 	1. Customer-service
+---
+	
+##	2. Inventory-service
+---
+	
+##	3. Order-service
+---
+	
+	
+	
 ___
     
 * <strong style="color: dark ; opacity: 0.80">Enfin nous tenons à remercier le seul et unique, notre professeur Mr YOUSFI Mohamed *Docteur & professeur à l'ENSET MEDIA* pour son soutien et son encouragement envers nous, aussi pour nous avoir donné cette opportunité d'améliorer nos compétences et de connaître les nouvelles technologies comme celles qui nous avons travaillé.
