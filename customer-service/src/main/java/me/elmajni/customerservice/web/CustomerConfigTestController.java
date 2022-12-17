@@ -4,6 +4,7 @@ import me.elmajni.customerservice.CustomerServiceApplication;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 
 @RestController
 @RefreshScope
+@CrossOrigin("*")
 public class CustomerConfigTestController {
     private static final Logger LOG = Logger.getLogger(CustomerServiceApplication.class.getName());
 

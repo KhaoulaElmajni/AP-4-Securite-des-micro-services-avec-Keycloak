@@ -8,16 +8,20 @@ import me.elmajni.orderservice.repositories.OrderRepository;
 import me.elmajni.orderservice.repositories.ProductItemRepository;
 import me.elmajni.orderservice.services.CustomerRestClientService;
 import me.elmajni.orderservice.services.InventoryRestClientService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.keycloak.KeycloakPrincipal;
+import org.keycloak.KeycloakSecurityContext;
+import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @RestController
 //@RequestMapping("/api")
+@CrossOrigin("*")
 public class OrderRestController {
     private static final Logger LOG = Logger.getLogger(OrderServiceApplication.class.getName());
 
@@ -47,5 +51,19 @@ public class OrderRestController {
             pi.setProduct(product);
         });
         return order;
+    }
+
+
+    @GetMapping("/jwt")
+    @ResponseBody
+    public Map<String,String> map(HttpServletRequest request){
+        KeycloakAuthenticationToken token = (KeycloakAuthenticationToken) request.getUserPrincipal();   //=> il permet de récupérer le token de l'utilisateur
+        KeycloakPrincipal principal = (KeycloakPrincipal) token.getPrincipal(); //=> il permet de récupérer le principal de l'utilisateur
+        KeycloakSecurityContext session = principal.getKeycloakSecurityContext();   //=> il permet de récupérer la session de l'utilisateur
+        //le contexte de sécurité de keycloak => les informations de l'utilisateur authentifié
+
+        Map<String,String>map = new HashMap<>();
+        map.put("access_token",session.getTokenString());
+        return map;
     }
 }

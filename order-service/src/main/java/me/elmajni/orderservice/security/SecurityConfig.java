@@ -1,7 +1,9 @@
 package me.elmajni.orderservice.security;
 
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
+import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +14,7 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 @KeycloakConfiguration//=> @Configuration + @EnableWebSecurity + @EnableGlobalMethodSecurity(prePostEnabled = true)
 //=> il permet de configurer la sécurité de l'application
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {//=> il permet de configurer la sécurité de l'application
     @Override
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
